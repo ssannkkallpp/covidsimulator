@@ -10,8 +10,8 @@ import json
 
 # Timeframe for the data read is initiated from Jan 22, 2021 : 22/01/2020
 _COVID_CASES_OVER_TIME_DATA = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv"
-_COVID_DEATHS_OVER_TIME_DATA = "https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv"
-_COVID_RECOVERED_OVER_TIME_DATA = "https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_recovered_global.csv"
+_COVID_DEATHS_OVER_TIME_DATA = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv"
+_COVID_RECOVERED_OVER_TIME_DATA = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_recovered_global.csv"
 
 
 _DATA_PATH = "data"
@@ -70,8 +70,8 @@ def fetch_data():
 
     #   print("Loading data from online repo...\n")
     confirmed_df = pd.read_csv(_COVID_CASES_OVER_TIME_DATA)
-    recovered_df = pd.read_csv(_COVID_CASES_OVER_TIME_DATA)
-    death_df = pd.read_csv(_COVID_CASES_OVER_TIME_DATA)
+    recovered_df = pd.read_csv(_COVID_RECOVERED_OVER_TIME_DATA)
+    death_df = pd.read_csv(_COVID_DEATHS_OVER_TIME_DATA)
 
     countries = confirmed_df["Country/Region"].unique()
 
