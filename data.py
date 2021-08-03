@@ -1,11 +1,8 @@
-# File works as intended but needs to be unit tested.
-
 import pandas as pd
 import numpy as np
 import os
 import json
 
-# from pathlib import Path
 
 
 # Timeframe for the data read is initiated from Jan 22, 2021 : 22/01/2020
