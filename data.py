@@ -4,7 +4,6 @@ import os
 import json
 
 
-
 # Timeframe for the data read is initiated from Jan 22, 2021 : 22/01/2020
 _COVID_CASES_OVER_TIME_DATA = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv"
 _COVID_DEATHS_OVER_TIME_DATA = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv"
