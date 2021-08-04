@@ -25,37 +25,43 @@
         <main class="container">
             <select class="select-country" id="country-dropdown">
             </select>
-            <div class="grid">
-                <article class="large-numbers-card light-blue-border">
-                    <span class="large-numbers" id="cases-yesterday">1000000</span> <br>
-                    Cases Yesterday
-                </article>
-                <article class="large-numbers-card lime-border">
-                    <span class="large-numbers" id="deaths-yesterday">1000000</span> <br>
-                    Deaths Yesterday
-                </article>
-                <article class="large-numbers-card amber-border">
-                    <span class="large-numbers" id="total-cases">1000000</span> <br>
-                    Total Cases
-                </article>
-                <article class="large-numbers-card orange-border">
-                    <span class="large-numbers" id="total-deaths">1000000</span> <br>
-                    Total Deaths
-                </article>
-              </div>
+            <article id="main-article">
+                <div class="grid" id="large-numbers-grid">
+                    <article class="large-numbers-card light-blue-border">
+                        <span class="large-numbers" id="cases-yesterday">1000000</span> <br>
+                        Cases Yesterday
+                    </article>
+                    <article class="large-numbers-card lime-border">
+                        <span class="large-numbers" id="deaths-yesterday">1000000</span> <br>
+                        Deaths Yesterday
+                    </article>
+                    <article class="large-numbers-card amber-border">
+                        <span class="large-numbers" id="total-cases">1000000</span> <br>
+                        Total Cases
+                    </article>
+                    <article class="large-numbers-card orange-border">
+                        <span class="large-numbers" id="total-deaths">1000000</span> <br>
+                        Total Deaths
+                    </article>
+                </div>
 
-              <div class="data-container">
-                  <div class="button-group">
-                    <a href="#" role="button" class="contrast" id = "daily_button" onclick="show_daily()">Daily</a>
-                    <a href="#" role="button" class="contrast outline" id = "cumulative_button" onclick="show_cumulative()">Cumulative</a>
-                    <a href="#" role="button" class="contrast outline" id = "predicted_button" onclick="show_predicted()">Predicted</a>
-                  </div>
-                  <div class="button-group">
-                    <a href="#" role="button" class="contrast outline" id = "cases_button" onclick="show_cases()">Cases</a>
-                    <a href="#" role="button" class="contrast outline" id = "deaths_button" onclick="show_deaths()">Deaths</a>
-                  </div>
-                  <canvas id="line-graph"></canvas>
-            </div>
+                <progress value="50" max="100" id="country-progress-bar"></progress>
+
+    
+                  <div class="data-container" id="chart-grid">
+                      <div class="button-group">
+                        <a href="#" role="button" class="contrast" id = "daily_button" onclick="show_daily()">Daily</a>
+                        <a href="#" role="button" class="contrast outline" id = "cumulative_button" onclick="show_cumulative()">Cumulative</a>
+                        <a href="#" role="button" class="contrast outline" id = "predicted_button" onclick="show_predicted()">Predicted</a>
+                      </div>
+                      <div class="button-group">
+                        <a href="#" role="button" class="contrast outline" id = "cases_button" onclick="show_cases()">Cases</a>
+                        <a href="#" role="button" class="contrast outline" id = "deaths_button" onclick="show_deaths()">Deaths</a>
+                      </div>
+                      <canvas id="line-graph"></canvas>
+                </div>
+            </article>
+            
         </main>   
         <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>

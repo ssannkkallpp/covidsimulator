@@ -61,7 +61,34 @@ $(document).ready(function() {
     });
 });
 
+function increase_country_progress_bar(increase_value) {
+    new_value = document.getElementById("country-progress-bar").value + increase_value;
+    if (new_value >= 100) {
+        show_country_elements();
+        new_value = 100;
+    } else if (new_value <= 0) {
+        new_value = 0;
+        hide_country_elements();
+    } else {
+        hide_country_elements();
+    }
+    document.getElementById("country-progress-bar").value = new_value;
+}
+
+function show_country_elements() {
+    document.getElementById("large-numbers-grid").classList.remove("hide");
+    document.getElementById("chart-grid").classList.remove("hide");
+    document.getElementById("country-progress-bar").classList.add("hide");
+}
+
+function hide_country_elements() {
+    document.getElementById("large-numbers-grid").classList.add("hide");
+    document.getElementById("chart-grid").classList.add("hide");
+    document.getElementById("country-progress-bar").classList.remove("hide");
+}
+
 function update_graph() {
+    increase_country_progress_bar(-100);
     update_data();
     refresh_graph();
     number_highlights();
@@ -72,6 +99,7 @@ function number_highlights() {
     document.getElementById("deaths-yesterday").textContent = + daily_deaths[daily_deaths.length - 1];
     document.getElementById("total-cases").textContent = + cumulative_cases[cumulative_cases.length - 1];
     document.getElementById("total-deaths").textContent = + cumulative_deaths[cumulative_deaths.length - 1];
+    increase_country_progress_bar(10);
 }
 
 function get_dates() {
@@ -116,6 +144,8 @@ function update_data() {
         }
    });
 
+   increase_country_progress_bar(10);
+
    $.ajax({
        async: false,
         type: 'GET',
@@ -125,9 +155,13 @@ function update_data() {
         }
     });
 
+    increase_country_progress_bar(10);
+
     // TODO : Add predicted cases
 
     predicted_cases = daily_cases;
+
+    increase_country_progress_bar(10);
 
     $.ajax({
         async: false,
@@ -138,6 +172,8 @@ function update_data() {
         }
    });
 
+   increase_country_progress_bar(10);
+
    $.ajax({
        async: false,
         type: 'GET',
@@ -147,9 +183,13 @@ function update_data() {
         }
     });
 
+    increase_country_progress_bar(10);
+
     // TODO : Add predicted deaths
 
     predicted_deaths = daily_deaths;
+
+    increase_country_progress_bar(10);
 }
 
 function get_string_array(data) {
@@ -227,8 +267,11 @@ function highlight_type_button(type) {
 function refresh_graph() {
     var returnData = get_data(currentType, currentDuration)
     draw_graph(returnData[typeArray.DATA], returnData[typeArray.DATE], returnData[typeArray.COLOR], currentType);
+    increase_country_progress_bar(10);
     highlight_type_button(currentType)
+    increase_country_progress_bar(10);
     highlight_duration_button(currentDuration)
+    increase_country_progress_bar(10);
 }
 
 function show_daily() {
@@ -264,7 +307,6 @@ function draw_graph(data, dates, lineColor, label) {
     if (current_chart != null) {
         current_chart.destroy();
     }
-    console.log(dates)
     current_chart = new Chart(document.getElementById("line-graph"), {
         type: 'line',
         data: {
