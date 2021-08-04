@@ -23,10 +23,10 @@
     
     <body>
         <main class="container">
-            <select class="select-country" id="country-dropdown">
-            </select>
+            <select class="select-country hide" id="country-dropdown"></select>
+            <progress value="50" max="100" id="page-load-progress-bar"></progress>
             <article id="main-article">
-                <div class="grid" id="large-numbers-grid">
+                <div class="grid hide" id="large-numbers-grid">
                     <article class="large-numbers-card light-blue-border">
                         <span class="large-numbers" id="cases-yesterday">1000000</span> <br>
                         Cases Yesterday
@@ -46,19 +46,18 @@
                 </div>
 
                 <progress value="50" max="100" id="country-progress-bar"></progress>
-
     
-                  <div class="data-container" id="chart-grid">
-                      <div class="button-group">
-                        <a href="#" role="button" class="contrast" id = "daily_button" onclick="show_daily()">Daily</a>
-                        <a href="#" role="button" class="contrast outline" id = "cumulative_button" onclick="show_cumulative()">Cumulative</a>
-                        <a href="#" role="button" class="contrast outline" id = "predicted_button" onclick="show_predicted()">Predicted</a>
-                      </div>
-                      <div class="button-group">
-                        <a href="#" role="button" class="contrast outline" id = "cases_button" onclick="show_cases()">Cases</a>
-                        <a href="#" role="button" class="contrast outline" id = "deaths_button" onclick="show_deaths()">Deaths</a>
-                      </div>
-                      <canvas id="line-graph"></canvas>
+                <div class="data-container hide" id="chart-grid">
+                    <div class="button-group">
+                    <a href="#" role="button" class="contrast" id = "daily_button" onclick="show_daily()">Daily</a>
+                    <a href="#" role="button" class="contrast outline" id = "cumulative_button" onclick="show_cumulative()">Cumulative</a>
+                    <a href="#" role="button" class="contrast outline" id = "predicted_button" onclick="show_predicted()">Predicted</a>
+                    </div>
+                    <div class="button-group">
+                    <a href="#" role="button" class="contrast outline" id = "cases_button" onclick="show_cases()">Cases</a>
+                    <a href="#" role="button" class="contrast outline" id = "deaths_button" onclick="show_deaths()">Deaths</a>
+                    </div>
+                    <canvas id="line-graph"></canvas>
                 </div>
             </article>
             

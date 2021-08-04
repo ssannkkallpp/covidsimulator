@@ -46,8 +46,11 @@ const typeArray = {
 }
 
 $(document).ready(function() {
+    increase_page_load_progress_bar(-100);
     populate_countries();
+    increase_page_load_progress_bar(50);
     get_dates();
+    increase_page_load_progress_bar(50);
 
     currentType = dataType.CASES;
     currentDuration = dataType.DAILY;
@@ -60,6 +63,29 @@ $(document).ready(function() {
         update_graph();
     });
 });
+
+function increase_page_load_progress_bar(increase_value) {
+    new_value = document.getElementById("page-load-progress-bar").value + increase_value;
+    if (new_value >= 100) {
+        show_country_elements();
+        document.getElementById("main-article").classList.remove("hide");
+        document.getElementById("country-dropdown").classList.remove("hide");
+        document.getElementById("page-load-progress-bar").classList.add("hide");
+        new_value = 100;
+    } else if (new_value <= 0) {
+        new_value = 0;
+        document.getElementById("main-article").classList.add("hide");
+        document.getElementById("country-dropdown").classList.add("hide");
+        document.getElementById("page-load-progress-bar").classList.remove("hide");
+        hide_country_elements();
+    } else {
+        document.getElementById("main-article").classList.add("hide");
+        document.getElementById("country-dropdown").classList.add("hide");
+        document.getElementById("page-load-progress-bar").classList.remove("hide")
+        hide_country_elements();
+    }
+    document.getElementById("page-load-progress-bar").value = new_value;
+}
 
 function increase_country_progress_bar(increase_value) {
     new_value = document.getElementById("country-progress-bar").value + increase_value;
