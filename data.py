@@ -1,8 +1,11 @@
-import pandas as pd
-import numpy as np
 import os
 import json
+import logging
+import numpy as np
+import pandas as pd
 
+from datetime import date
+from prophet import Prophet
 
 # Timeframe for the data read is initiated from Jan 22, 2021 : 22/01/2020
 _COVID_CASES_OVER_TIME_DATA = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv"
@@ -65,6 +68,9 @@ def fetch_data():
         )
 
     #   print("Loading data from online repo...\n")
+    logger = logging.getLogger('fbprophet')
+    logger.setLevel(logging.ERROR)
+    logger.propagate = False
     confirmed_df = pd.read_csv(_COVID_CASES_OVER_TIME_DATA)
     recovered_df = pd.read_csv(_COVID_RECOVERED_OVER_TIME_DATA)
     death_df = pd.read_csv(_COVID_DEATHS_OVER_TIME_DATA)
@@ -101,11 +107,31 @@ def fetch_data():
         data_table.append(get_incident_cases(data_table[0]))
         data_table.append(get_incident_cases(data_table[1]))
         data_table.append(get_incident_cases(data_table[2]))
-
+        
+        prophet_df = pd.DataFrame(dates)
+        prophet_df.columns = ["ds"]
+        date_today = prophet_df.iloc[-1, prophet_df.columns.get_loc("ds")]
         for idx in range(len(_FTypes)):
             file = open(_DATA_PATH + "/" + country_name + "/" + _FTypes[idx], "w")
             np.savetxt(file, data_table[idx])
+
+            prophet_df['y'] = data_table[idx]
+            model = Prophet()
+            model.fit(prophet_df)
+            future = model.make_future_dataframe(periods=60)
+            forecast = model.predict(future)
+            forecast = forecast[~(forecast['ds'] < date_today)]
+            forecast = forecast.iloc[1:]
             file.close()
+            predicted_file = open(_DATA_PATH + "/" + country_name + "/predicted_" + _FTypes[idx], "w")
+            np.savetxt(predicted_file, forecast['yhat'].tolist())
+            predicted_file.close()
+            if c == 0 and idx == 0:
+                predicted_dates = []
+                for timeobject in forecast['ds'].tolist():
+                    predicted_dates.append(timeobject.strftime("%m/%d/%y"))
+                
+                write_to_file("predicted_dates", predicted_dates)
 
     write_to_file("dates", dates)
     write_to_file("countries", countries)
