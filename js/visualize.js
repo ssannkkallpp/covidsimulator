@@ -250,9 +250,7 @@ function get_data(type, duration) {
         returnArray = get_daily();
     } else if (duration == dataType.CUMULATIVE) {
         var returnArray = get_cumulative();
-    } else if (duration == dataType.PREDICTED) {
-        var returnArray = get_predicted();
-    }
+    } 
 
     if (returnArray == null) {
         console.error("Cannot have null death data");
@@ -274,9 +272,7 @@ function highlight_duration_button(duration) {
         document.getElementById("daily_button").classList.remove("outline");
     } else if (duration == dataType.CUMULATIVE) {
         document.getElementById("cumulative_button").classList.remove("outline");
-    } else if (duration == dataType.PREDICTED) {
-        document.getElementById("predicted_button").classList.remove("outline");
-    }
+    } 
 }
 
 function highlight_type_button(type) {
