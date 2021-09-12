@@ -21,9 +21,10 @@ var cumulative_dates;
 var cumulative_cases;
 var cumulative_deaths;
 
+/*
 var predicted_dates;
 var predicted_cases; 
-var predicted_deaths;
+var predicted_deaths;*/
 
 const dataType = {
 	CASES : "Cases",
@@ -135,7 +136,7 @@ function get_dates() {
         url: DATA_FOLDER + "/dates",
         success: function(dates_file) {
             daily_dates = get_string_array(dates_file);
-            predicted_dates = daily_dates;
+         //   predicted_dates = daily_dates;
             cumulative_dates = daily_dates;
         }
    });
@@ -185,7 +186,7 @@ function update_data() {
 
     // TODO : Add predicted cases
 
-    predicted_cases = daily_cases;
+  //  predicted_cases = daily_cases;
 
     increase_country_progress_bar(10);
 
@@ -213,7 +214,7 @@ function update_data() {
 
     // TODO : Add predicted deaths
 
-    predicted_deaths = daily_deaths;
+  //  predicted_deaths = daily_deaths;
 
     increase_country_progress_bar(10);
 }
@@ -240,9 +241,10 @@ function get_cumulative() {
     return [cumulative_cases, cumulative_deaths, cumulative_dates]
 }
 
+/*
 function get_predicted() {
     return [predicted_cases, predicted_deaths, predicted_dates]
-}
+}*/
 
 function get_data(type, duration) {
     var returnArray = null;
@@ -266,7 +268,7 @@ function get_data(type, duration) {
 function highlight_duration_button(duration) {
     document.getElementById("daily_button").classList.add("outline");
     document.getElementById("cumulative_button").classList.add("outline");
-    document.getElementById("predicted_button").classList.add("outline");
+  //  document.getElementById("predicted_button").classList.add("outline");
 
     if (duration == dataType.DAILY) {
         document.getElementById("daily_button").classList.remove("outline");
@@ -306,10 +308,11 @@ function show_cumulative() {
     refresh_graph();
 }
 
+/*
 function show_predicted() {
     currentDuration = dataType.PREDICTED;
     refresh_graph();
-}
+}*/
 
 function show_cases() {
     currentType = dataType.CASES;
