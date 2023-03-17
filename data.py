@@ -57,7 +57,6 @@ def write_to_file(name, content):
 
 
 def fetch_data():
-
     if (
         _COVID_CASES_OVER_TIME_DATA
         or _COVID_DEATHS_OVER_TIME_DATA
